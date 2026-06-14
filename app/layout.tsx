@@ -1,3 +1,4 @@
+import Header from "@/components/header";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
@@ -30,6 +31,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={cn(
+        "dark",
         "h-full",
         "antialiased",
         geistSans.variable,
@@ -38,7 +40,10 @@ export default function RootLayout({
         inter.variable,
       )}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
