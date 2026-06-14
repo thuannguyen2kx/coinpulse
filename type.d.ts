@@ -1,3 +1,15 @@
+type OHLCData = [number, number, number, number, number];
+interface CandlestickChartProps {
+  data?: OHLCData[];
+  liveOhlcv?: OHLCData | null;
+  coinId: string;
+  height?: number;
+  children?: React.ReactNode;
+  mode?: "historical" | "live";
+  initialPeriod?: Period;
+  liveInterval: "1s" | "1m";
+  setLiveInterval: (interval: "1s" | "1m") => void;
+}
 interface CoinDetailsData {
   id: string;
   name: string;
@@ -63,6 +75,14 @@ interface TrendingCoin {
     };
   };
 }
+type Period =
+  | "daily"
+  | "weekly"
+  | "monthly"
+  | "3months"
+  | "6months"
+  | "yearly"
+  | "max";
 
 interface DataTableColumn<T> {
   header: React.ReactNode;
