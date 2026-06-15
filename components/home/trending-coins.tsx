@@ -69,7 +69,7 @@ const TrendingCoins = async () => {
   }
 
   return (
-    <div className="trending-coins">
+    <div id="trending-coins">
       <h4>Trending Coins</h4>
 
       <DataTable
