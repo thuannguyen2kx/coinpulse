@@ -1,3 +1,8 @@
+interface NextPageProps {
+  params: Promise<{ [key: string]: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
 type OHLCData = [number, number, number, number, number];
 interface CandlestickChartProps {
   data?: OHLCData[];
@@ -84,6 +89,34 @@ interface Category {
   volume_24h: number;
 }
 
+interface CoinMarketData {
+  id: string;
+  symbol: string;
+  name: string;
+  image: string;
+  current_price: number;
+  market_cap: number;
+  market_cap_rank: number;
+  fully_diluted_valuation: number;
+  total_volume: number;
+  high_24h: number;
+  low_24h: number;
+  price_change_24h: number;
+  price_change_percentage_24h: number;
+  market_cap_change_24h: number;
+  market_cap_change_percentage_24h: number;
+  circulating_supply: number;
+  total_supply: number;
+  max_supply: number;
+  ath: number;
+  ath_change_percentage: number;
+  ath_date: string;
+  atl: number;
+  atl_change_percentage: number;
+  atl_date: string;
+  last_updated: string;
+}
+
 type Period =
   | "daily"
   | "weekly"
@@ -117,3 +150,9 @@ interface CoinGeckoErrorBody {
 }
 
 type QueryParams = Record<string, string | number | boolean | undefined>;
+
+interface Pagination {
+  currentPage: number;
+  totalPages: number;
+  hasMorePages: boolean;
+}
