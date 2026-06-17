@@ -12,8 +12,8 @@ interface CandlestickChartProps {
   children?: React.ReactNode;
   mode?: "historical" | "live";
   initialPeriod?: Period;
-  liveInterval: "1s" | "1m";
-  setLiveInterval: (interval: "1s" | "1m") => void;
+  liveInterval?: "1s" | "1m";
+  setLiveInterval?: (interval: "1s" | "1m") => void;
 }
 interface CoinDetailsData {
   id: string;
@@ -63,7 +63,28 @@ interface CoinDetailsData {
   };
   tickers: Ticker[];
 }
+interface LiveDataProps {
+  coinId: string;
+  poolId: string;
+  coin: CoinDetailsData;
+  coinOHLCData?: OHLCData[];
+  children?: React.ReactNode;
+}
 
+interface LiveCoinHeaderProps {
+  name: string;
+  image: string;
+  livePrice?: number;
+  livePriceChangePercentage24h: number;
+  priceChangePercentage30d: number;
+  priceChange24h: number;
+}
+
+interface ConverterProps {
+  symbol: string;
+  icon: string;
+  priceList: Record<string, number>;
+}
 interface TrendingCoin {
   item: {
     id: string;
@@ -115,6 +136,63 @@ interface CoinMarketData {
   atl_change_percentage: number;
   atl_date: string;
   last_updated: string;
+}
+
+interface Trade {
+  price?: number;
+  timestamp?: number;
+  type?: string;
+  amount?: number;
+  value?: number;
+}
+
+interface ExtendedPriceData {
+  usd: number;
+  coin?: string;
+  price?: number;
+  change24h?: number;
+  marketCap?: number;
+  volume24h?: number;
+  timestamp?: number;
+}
+interface UseCoinGeckoWebSocketProps {
+  coinId: string;
+  poolId: string;
+  liveInterval?: "1s" | "1m";
+}
+
+interface UseCoinGeckoWebSocketReturn {
+  price: ExtendedPriceData | null;
+  trades: Trade[];
+  ohlcv: OHLCData | null;
+  isConnected: boolean;
+}
+
+interface WebSocketMessage {
+  type?: string;
+  c?: string;
+  ch?: string;
+  i?: string;
+  p?: number;
+  pp?: number;
+  pu?: number;
+  m?: number;
+  v?: number;
+  vo?: number;
+  o?: number;
+  h?: number;
+  l?: number;
+  t?: number;
+  to?: number;
+  ty?: string;
+  channel?: string;
+  identifier?: string;
+}
+interface PoolData {
+  id: string;
+  address: string;
+  name: string;
+  network: string;
 }
 
 type Period =
